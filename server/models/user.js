@@ -9,6 +9,7 @@ const userSchema =
       name: {
         type: String,
         required: true,
+        trim: true,
       },
 
       email: {
@@ -34,20 +35,6 @@ const userSchema =
       timestamps: true,
     }
   );
-
-// Force index creation
-userSchema.index(
-  { email: 1 },
-  { unique: true }
-);
-
-userSchema.index(
-  { phone: 1 },
-  {
-    unique: true,
-    sparse: true,
-  }
-);
 
 module.exports =
   mongoose.models

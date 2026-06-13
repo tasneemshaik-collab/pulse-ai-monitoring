@@ -9,7 +9,7 @@ const getPrediction =
   );
 
 const User = require(
-  "../models/User"
+  "../models/user"
 );
 
 const {
