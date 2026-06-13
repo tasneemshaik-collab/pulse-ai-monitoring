@@ -1,0 +1,751 @@
+.dashboard-container {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  gap: 24px;
+  align-items: stretch;
+  margin-top: 24px;
+}
+
+/* LEFT SIDE */
+.left-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* FIXED GRAPH CARD */
+.graph-card {
+  background: #0d0d0d;
+  border: 1px solid #232323;
+  border-radius: 28px;
+  padding: 24px;
+  height: 650px; /* FIXED */
+  overflow: hidden;
+}
+
+.graph-card h2 {
+  color: white;
+  margin-bottom: 10px;
+}
+
+.graph-card p {
+  color: #8e8e8e;
+  margin-bottom: 18px;
+}
+
+/* Prevent chart stretching */
+.graph-wrapper {
+  height: 500px;
+  width: 100%;
+}
+
+/* AI Prediction */
+.prediction-card {
+  background: #0d0d0d;
+  border: 1px solid #232323;
+  border-radius: 28px;
+  padding: 28px;
+  height: fit-content;
+}
+.prediction-card p {
+  margin: 10px 0;
+  line-height: 1.7;
+}
+
+/* RIGHT SIDE CHAT */
+.chat-section {
+  height: 880px; /* FIXED */
+}
+
+/* Chatbot fixed height */
+.chatbot-card {
+  background: #0d0d0d;
+  border: 1px solid #232323;
+  border-radius: 28px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Chat messages scroll only */
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar */
+.chat-messages::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background: #2c2c2c;
+  border-radius: 20px;
+}
+/* AUTH */
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #050b1d;
+}
+
+.auth-box {
+  width: 400px;
+  background: #0b1120;
+  border-radius: 20px;
+  padding: 40px;
+  border: 1px solid
+    rgba(255,255,255,0.1);
+}
+
+.auth-box h1 {
+  color: white;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.auth-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.auth-box input {
+  padding: 15px;
+  border-radius: 10px;
+  border: none;
+  background: #111827;
+  color: white;
+  outline: none;
+}
+
+.auth-box button {
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  background: white;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.auth-box p {
+  margin-top: 20px;
+  text-align: center;
+  color: #aaa;
+}
+
+.auth-box a {
+  color: #4ea8ff;
+}
+
+.logout-btn {
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: none;
+  background: white;
+  color: black;
+  font-weight: 700;
+  cursor: pointer;
+}
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.logout-btn {
+  background: white;
+  color: black;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+/* HEADER */
+.header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* TOGGLE */
+.theme-toggle {
+  cursor: pointer;
+}
+
+.toggle-switch {
+  width: 65px;
+  height: 34px;
+  border-radius: 999px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  transition: 0.3s ease;
+}
+
+.toggle-switch.dark {
+  background: #111827;
+  justify-content: flex-start;
+}
+
+.toggle-switch.light {
+  background: #dbeafe;
+  justify-content: flex-end;
+}
+
+.toggle-circle {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* DARK MODE */
+.dark-mode {
+  background: #050b1d;
+  color: white;
+}
+
+/* LIGHT MODE */
+/* LIGHT MODE */
+.light-mode {
+  background: #eef2ff;
+  color: #111827;
+}
+
+/* Cards */
+.light-mode .card,
+.light-mode .graph-card,
+.light-mode .prediction-card,
+.light-mode .chatbot-card,
+.light-mode .chatbot-container {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  color: #111827;
+}
+
+/* Titles */
+.light-mode h1,
+.light-mode h2,
+.light-mode h3,
+.light-mode p,
+.light-mode strong {
+  color: #111827;
+}
+
+/* Chatbot */
+.light-mode .chat-header {
+  background: #e5e7eb;
+  color: black;
+}
+
+.light-mode .chat-messages {
+  background: #ffffff;
+}
+
+.light-mode .message {
+  color: black;
+}
+
+/* User messages */
+.light-mode .user-message {
+  background: #dbeafe;
+  color: black;
+}
+
+/* AI messages */
+.light-mode .ai-message {
+  background: #f3f4f6;
+  color: black;
+}
+
+/* Input */
+.light-mode .chat-input {
+  background: #ffffff;
+}
+
+.light-mode .chat-input input {
+  background: #f3f4f6;
+  color: black;
+  border: 1px solid #d1d5db;
+}
+
+/* GRAPH FIX */
+.light-mode canvas {
+  filter: invert(0);
+}
+
+/* Toggle direction FIX */
+.toggle-switch.dark {
+  justify-content: flex-end;
+  background: #111827;
+}
+
+.toggle-switch.light {
+  justify-content: flex-start;
+  background: #dbeafe;
+}
+/* PROFILE */
+/* PROFILE */
+
+.profile-wrapper {
+  position: relative;
+}
+
+.profile-btn {
+  width: 52px;
+  height: 52px;
+  border: none;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  font-size: 22px;
+  transition: 0.3s ease;
+}
+
+.profile-btn:hover {
+  transform: scale(1.05);
+}
+
+/* PROFILE DROPDOWN */
+.profile-dropdown {
+  position: absolute;
+  top: 70px;
+  right: 0;
+  width: 320px;
+  border-radius: 26px;
+  padding: 28px;
+  z-index: 9999;
+  transition: 0.3s ease;
+  box-shadow:
+    0 15px 45px
+    rgba(0,0,0,0.25);
+}
+
+/* DARK MODE PROFILE */
+.dark-mode .profile-dropdown {
+  background: #0b1120;
+  border: 1px solid
+    rgba(255,255,255,0.08);
+  color: white;
+}
+
+/* LIGHT MODE PROFILE */
+.light-mode .profile-dropdown {
+  background: white;
+  border: 1px solid #d1d5db;
+  color: #111827;
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  margin: auto;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 34px;
+  margin-bottom: 18px;
+}
+
+/* Avatar Dark */
+.dark-mode .profile-avatar {
+  background: #1e293b;
+}
+
+/* Avatar Light */
+.light-mode .profile-avatar {
+  background: #e5e7eb;
+}
+
+.profile-dropdown h3 {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 24px;
+}
+
+/* Heading Colors */
+.dark-mode .profile-dropdown h3 {
+  color: white;
+}
+
+.light-mode .profile-dropdown h3 {
+  color: #111827;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.profile-row {
+  padding: 16px;
+  border-radius: 14px;
+}
+
+/* Dark Cards */
+.dark-mode .profile-row {
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.05
+    );
+}
+
+/* Light Cards */
+.light-mode .profile-row {
+  background:
+    #f3f4f6;
+}
+
+.profile-row span {
+  font-size: 14px;
+}
+
+/* Dark Text */
+.dark-mode .profile-row span {
+  color: #94a3b8;
+}
+
+.dark-mode .profile-row p {
+  color: white;
+}
+
+/* Light Text */
+.light-mode .profile-row span {
+  color: #6b7280;
+}
+
+.light-mode .profile-row p {
+  color: #111827;
+}
+
+.profile-row p {
+  margin-top: 6px;
+  word-break: break-word;
+}
+/* ===================================
+   PREMIUM CLEAN HOVER SYSTEM
+=================================== */
+
+button,
+.card,
+.graph-card,
+.prediction-card,
+.chatbot-container,
+.profile-btn,
+.theme-toggle,
+.auth-box input,
+.chat-input input,
+.profile-row {
+  transition:
+    background 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+}
+
+/* ==========================
+   BUTTONS
+========================== */
+
+.logout-btn:hover,
+.chat-input button:hover,
+.auth-box button:hover {
+  background: #2563eb;
+  color: white;
+  box-shadow:
+    0 8px 20px
+    rgba(
+      37,
+      99,
+      235,
+      0.22
+    );
+}
+
+/* Profile button */
+.profile-btn:hover {
+  background:
+    rgba(
+      37,
+      99,
+      235,
+      0.12
+    );
+}
+
+/* Theme toggle */
+.theme-toggle:hover {
+  opacity: 0.9;
+}
+
+/* ==========================
+   CARDS
+========================== */
+
+.card:hover,
+.prediction-card:hover,
+.graph-card:hover,
+.chatbot-container:hover {
+  box-shadow:
+    0 10px 25px
+    rgba(
+      0,
+      0,
+      0,
+      0.12
+    );
+}
+
+/* Dark mode */
+.dark-mode .card:hover,
+.dark-mode
+.prediction-card:hover,
+.dark-mode
+.graph-card:hover,
+.dark-mode
+.chatbot-container:hover {
+  border-color:
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    );
+}
+
+/* ==========================
+   INPUTS
+========================== */
+
+.auth-box input:hover,
+.chat-input input:hover {
+  border-color:
+    #2563eb;
+}
+
+.auth-box input:focus,
+.chat-input input:focus {
+  border-color:
+    #2563eb;
+  box-shadow:
+    0 0 0 4px
+    rgba(
+      37,
+      99,
+      235,
+      0.12
+    );
+}
+/* PROFILE ROW */
+
+.profile-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 14px 16px;
+  border-radius: 14px;
+  margin-bottom: 12px;
+}
+
+.dark-mode
+.profile-row {
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.05
+    );
+}
+
+.light-mode
+.profile-row {
+  background:
+    #f3f4f6;
+}
+
+/* LEFT LABEL */
+.profile-row strong {
+  min-width: 70px;
+  font-size: 15px;
+}
+
+/* RIGHT VALUE */
+.profile-row span {
+  flex: 1;
+  text-align: right;
+  margin-left: 18px;
+  font-size: 14px;
+  color: #6b7280;
+}
+/* ==================================
+   PREMIUM NON-ANNOYING HOVER
+================================== */
+
+/* Smooth transitions */
+button,
+.card,
+.graph-card,
+.prediction-card,
+.chatbot-container,
+.profile-btn,
+.theme-toggle,
+.auth-box input,
+.chat-input input,
+.profile-row {
+  transition:
+    background-color 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease,
+    filter 0.25s ease;
+}
+
+/* ==========================
+   BUTTONS
+========================== */
+
+.logout-btn:hover,
+.auth-box button:hover,
+.chat-input button:hover {
+  background: #1d4ed8 !important;
+  color: white !important;
+  filter: brightness(1.05);
+}
+
+/* Profile button */
+.profile-btn:hover {
+  background:
+    rgba(
+      59,
+      130,
+      246,
+      0.12
+    ) !important;
+}
+
+/* Theme toggle */
+.theme-toggle:hover {
+  filter:
+    brightness(1.08);
+}
+
+/* ==========================
+   CARDS
+========================== */
+
+.card:hover,
+.prediction-card:hover,
+.graph-card:hover,
+.chatbot-container:hover {
+  border-color:
+    rgba(
+      59,
+      130,
+      246,
+      0.18
+    ) !important;
+}
+
+/* Dark mode hover */
+.dark-mode .card:hover,
+.dark-mode .prediction-card:hover,
+.dark-mode .graph-card:hover,
+.dark-mode .chatbot-container:hover {
+  background:
+    #101827 !important;
+
+  box-shadow:
+    0 0 20px
+    rgba(
+      59,
+      130,
+      246,
+      0.08
+    );
+}
+
+/* Light mode hover */
+.light-mode .card:hover,
+.light-mode .prediction-card:hover,
+.light-mode .graph-card:hover,
+.light-mode .chatbot-container:hover {
+  background:
+    #f8fbff !important;
+
+  box-shadow:
+    0 0 18px
+    rgba(
+      59,
+      130,
+      246,
+      0.08
+    );
+}
+
+/* ==========================
+   INPUTS
+========================== */
+
+.auth-box input:hover,
+.chat-input input:hover {
+  border-color:
+    #3b82f6 !important;
+}
+
+.auth-box input:focus,
+.chat-input input:focus {
+  border-color:
+    #3b82f6 !important;
+  box-shadow:
+    0 0 0 3px
+    rgba(
+      59,
+      130,
+      246,
+      0.15
+    );
+}
+
+/* ==========================
+   PROFILE
+========================== */
+
+.profile-row:hover {
+  background:
+    rgba(
+      59,
+      130,
+      246,
+      0.08
+    );
+}
+
+/* ==========================
+   LINKS
+========================== */
+
+.auth-box a:hover {
+  color:
+    #2563eb;
+}
