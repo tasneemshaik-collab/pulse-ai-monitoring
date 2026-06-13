@@ -1,6 +1,6 @@
 const User =
   require(
-    "../models/User"
+    "../models/user"
   );
 
 const bcrypt =
