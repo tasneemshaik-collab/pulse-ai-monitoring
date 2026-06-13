@@ -50,7 +50,7 @@ function ChatBot({
 
           const res =
             await axios.get(
-              "http://localhost:5000/api/chatbot/history",
+              "https://pulse-ai-monitoring.onrender.com/api/chatbot/history",
               {
                 headers:
                   {
@@ -138,7 +138,7 @@ function ChatBot({
 
         const res =
           await axios.post(
-            "http://localhost:5000/api/chatbot",
+            "https://pulse-ai-monitoring.onrender.com/api/chatbot",
             {
               question:
                 currentQuestion,

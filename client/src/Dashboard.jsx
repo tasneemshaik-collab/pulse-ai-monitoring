@@ -120,7 +120,7 @@ function Dashboard() {
       try {
         const res =
           await axios.get(
-            "http://localhost:5000/api/metrics"
+            "https://pulse-ai-monitoring.onrender.com/api/metrics"
           );
 
         setMetrics(

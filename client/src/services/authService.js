@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API =
-  "http://localhost:5000/api/auth";
+  "https://pulse-ai-monitoring.onrender.com/api/auth";
 
 export const registerUser =
   async (userData) => {
