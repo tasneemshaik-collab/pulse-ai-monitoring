@@ -12,19 +12,16 @@ const askChatbot = async (question, metrics) => {
 
   try {
     console.log("Question:", question);
-    console.log("Metrics:", metrics);
+    console.log("Metrics received:", metrics);
 
     if (!process.env.GROQ_API_KEY) {
-      throw new Error("GROQ_API_KEY is missing from server .env");
+      throw new Error("GROQ_API_KEY is missing from server environment");
     }
 
-    const cpu =
-      metrics?.cpuValue ??
-      metrics?.cpuUsage ??
-      "unknown";
-
-    const freeMemory =
-      metrics?.freeMemory ?? "unknown";
+    // Pass ALL available dashboard metrics to the AI
+    const systemInformation = metrics
+      ? JSON.stringify(metrics, null, 2)
+      : "No dashboard metrics are currently available.";
 
     const response = await groq.chat.completions.create({
       model: "openai/gpt-oss-20b",
@@ -32,16 +29,42 @@ const askChatbot = async (question, metrics) => {
       messages: [
         {
           role: "system",
-          content: `You are PulseAI Assistant.
-You help users monitor their PC health.
+          content: `
+You are PulseAI Assistant, an intelligent PC monitoring assistant.
 
-Current system information:
-CPU Usage: ${cpu}%
-Free Memory: ${freeMemory} GB
+You help users understand their computer's live performance.
 
-Answer questions about system performance.
-Keep answers short, clear and helpful.
-Use simple English.`,
+Here is the complete dashboard information:
+
+${systemInformation}
+
+IMPORTANT INSTRUCTIONS:
+
+1. Answer questions using the dashboard information above.
+2. You can answer questions about:
+   - CPU Usage
+   - Total Memory
+   - Used Memory
+   - Free Memory
+   - Uptime
+   - Operating System / Platform
+   - Hostname
+   - AI Prediction Status
+   - AI Confidence Score
+   - AI Prediction Reason
+
+3. If asked about uptime, use the uptime value.
+4. If asked about AI confidence, use the confidence value inside aiPrediction.
+5. If asked about AI status, use the status inside aiPrediction.
+6. If asked about CPU usage, use cpuValue or cpuUsage.
+7. If asked about memory, use the corresponding memory values.
+8. Never say information is unavailable if it exists in the dashboard data.
+9. Never invent or guess values.
+10. If a requested value is genuinely missing, clearly say so.
+11. Explain technical terms in simple English.
+12. Keep answers short, friendly and helpful.
+13. You are PulseAI Assistant. Answer questions about the user's PC and dashboard.
+          `,
         },
         {
           role: "user",
@@ -69,7 +92,7 @@ Use simple English.`,
     console.error("Error details:", error.error);
     console.error("================================");
 
-    return "❌ AI unavailable. Check the server terminal for the Groq error.";
+    return "❌ AI unavailable. Please try again.";
   }
 };
 
