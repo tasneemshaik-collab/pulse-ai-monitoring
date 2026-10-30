@@ -1,41 +1,32 @@
-const mongoose =
-require("mongoose");
+const mongoose = require("mongoose");
 
-const metricsSchema =
-new mongoose.Schema(
-  {
+const metricsSchema = new mongoose.Schema(
+{
     cpuUsage: String,
     cpuValue: Number,
 
-    totalMemory:
-    String,
+    totalMemory: String,
 
-    usedMemory:
-    String,
+    usedMemory: String,
+    usedMemoryValue: Number,
 
-    usedMemoryValue:
-    Number,
+    freeMemory: String,
 
-    freeMemory:
-    String,
+    uptime: String,
 
-    uptime:
-    String,
+    platform: String,
 
-    platform:
-    String,
+    hostname: String,
 
-    hostname:
-    String,
-  },
-  {
-    timestamps:
-    true,
-  }
+    aiPrediction: {
+        status: String,
+        confidence: Number,
+        reason: String,
+    },
+},
+{
+    timestamps: true,
+}
 );
 
-module.exports =
-mongoose.model(
-  "Metrics",
-  metricsSchema
-);
+module.exports = mongoose.model("Metrics", metricsSchema);

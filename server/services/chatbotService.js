@@ -1,83 +1,76 @@
-console.log(
-  "✅ chatbotService loaded"
-);
+
+console.log("✅ chatbotService loaded");
+
 const Groq = require("groq-sdk");
 
 const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY,
 });
 
-const askChatbot = async (
-  question,
-  metrics
-) => {
-  console.log(
-  "🔥 askChatbot called"
-);
+const askChatbot = async (question, metrics) => {
+  console.log("🔥 askChatbot called");
+
   try {
-    console.log(
-      "Question:",
-      question
-    );
-    
-    console.log(
-      "Metrics:",
-      metrics
-    );
+    console.log("Question:", question);
+    console.log("Metrics:", metrics);
+
+    if (!process.env.GROQ_API_KEY) {
+      throw new Error("GROQ_API_KEY is missing from server .env");
+    }
 
     const cpu =
-      metrics?.cpuValue || "unknown";
-
-    const freeMemory =
-      metrics?.freeMemory ||
+      metrics?.cpuValue ??
+      metrics?.cpuUsage ??
       "unknown";
 
-    const response =
-      await groq.chat.completions.create({
-        model:
-          "llama-3.1-8b-instant",
+    const freeMemory =
+      metrics?.freeMemory ?? "unknown";
 
-        messages: [
-          {
-            role: "system",
-            content: `You are PulseAI Assistant.
-You help monitor PC health.
+    const response = await groq.chat.completions.create({
+      model: "openai/gpt-oss-20b",
+
+      messages: [
+        {
+          role: "system",
+          content: `You are PulseAI Assistant.
+You help users monitor their PC health.
+
+Current system information:
 CPU Usage: ${cpu}%
 Free Memory: ${freeMemory} GB
-Keep answers short and helpful.`,
-          },
 
-          {
-            role: "user",
-            content: String(question),
-          },
-        ],
+Answer questions about system performance.
+Keep answers short, clear and helpful.
+Use simple English.`,
+        },
+        {
+          role: "user",
+          content: String(question),
+        },
+      ],
 
-        temperature: 0.7,
-      });
+      temperature: 0.7,
+      max_completion_tokens: 512,
+    });
 
-    console.log(
-      "Groq Success"
-    );
+    const aiReply =
+      response.choices?.[0]?.message?.content;
 
-    return (
-      response.choices?.[0]
-        ?.message?.content ||
-      "No response received."
-    );
+    console.log("✅ Groq Success");
+    console.log("AI Reply:", aiReply);
+
+    return aiReply || "No response received from AI.";
+
   } catch (error) {
-  console.log("========= GROQ ERROR =========");
+    console.error("========== GROQ ERROR ==========");
+    console.error("Message:", error.message);
+    console.error("Status:", error.status);
+    console.error("Code:", error.code);
+    console.error("Error details:", error.error);
+    console.error("================================");
 
-  console.log(error);
-
-  console.log(
-    error?.response?.data
-  );
-
-  console.log("==============================");
-
-  return "❌ AI unavailable.";
-}
+    return "❌ AI unavailable. Check the server terminal for the Groq error.";
+  }
 };
 
 module.exports = {

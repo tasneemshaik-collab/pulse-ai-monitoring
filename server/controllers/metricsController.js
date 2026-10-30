@@ -176,10 +176,23 @@ const getSystemMetrics =
          SAVE TO DB
       ========================== */
 
-      const savedMetric =
-        await Metrics.create(
-          metricsData
-        );
+      const mongoose = require("mongoose");
+
+      console.log(
+          "Mongo Ready State:",
+          mongoose.connection.readyState
+      );
+
+      if (mongoose.connection.readyState !== 1) {
+        throw new Error("MongoDB is not connected.");
+      }
+
+      const savedMetric = await Metrics.create(metricsData);
+
+      console.log(
+        "Saved to MongoDB ✅",
+        savedMetric._id
+      );
 
       console.log(
         "Saved to MongoDB ✅",
